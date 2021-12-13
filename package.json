@@ -1,0 +1,23 @@
+{
+  "name": "cedeterijastudenti",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pargeo82/cedeterijaStudenti.git"
+  },
+  "author": "Pargeo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pargeo82/cedeterijaStudenti/issues"
+  },
+  "homepage": "https://github.com/Pargeo82/cedeterijaStudenti#readme",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "sass": "^1.45.0"
+  }
+}
