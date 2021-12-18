@@ -10,3 +10,12 @@
 #pargLogo {
     color: #FC9102;
 }
+
+#datumcol,
+#dancol {
+    width: 100px;
+}
+
+#termincol {
+    padding: 0.05rem 0.25rem;
+}

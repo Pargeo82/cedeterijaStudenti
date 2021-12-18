@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const Schedule = require('./models/schedule');
 const Student = require('./models/student');
 
+
 mongoose.connect('mongodb://localhost:27017/studenti');
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
@@ -18,6 +19,7 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'node_modules')));
+
 
 app.get('/', (req, res) => {
     res.render('home');
