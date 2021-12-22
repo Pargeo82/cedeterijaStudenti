@@ -107,8 +107,61 @@ function makeSvg(param) {
     rect1.setAttribute("x", "0");
     rect1.setAttribute("width", "100%");
     rect1.setAttribute("height", "100%");
-    rect1.setAttribute("fill", "yellow");
+    rect1.setAttribute("fill", "transparent");
     let parentElement = document.querySelector(`#ttermin${param}`);
     parentElement.appendChild(svg1);
     svg1.appendChild(rect1);
 };
+
+const drawRect = {
+    radnoVrijeme: {
+        start: 9,
+        end: 20
+    },
+    totalVrijeme: function () {
+        return this.radnoVrijeme.end - this.radnoVrijeme.start;
+    },
+    cliWidth: document.querySelector("#ttermin2 svg").clientWidth,
+    sat: function () {
+        return this.cliWidth / this.totalVrijeme();
+    },
+    radnaPotreba: {
+        start: 9,
+        end: 14
+    },
+    totalRad: function () {
+        return this.radnaPotreba.end - this.radnaPotreba.start;
+    },
+    x: function () {
+        return (this.radnaPotreba.start - this.radnoVrijeme.start) * this.sat();
+    },
+    width: function () {
+        return parseFloat(this.totalRad() / this.totalVrijeme()).toFixed(2);
+    },
+    startText: function () {
+        return `${this.x() + this.width() / 4 * this.cliWidth}`;
+    },
+    studentColor: "red",
+    workRect: function () {
+        let rect2 = document.createElementNS('http://www.w3.org/2000/svg', "rect");
+        rect2.setAttribute("x", this.x());
+        rect2.setAttribute("width", `${parseInt(this.width() * 100)}%`);
+        rect2.setAttribute("height", "100%");
+        rect2.setAttribute("fill", this.studentColor);
+        let text1 = document.createElementNS('http://www.w3.org/2000/svg', "text");
+        text1.setAttributeNS(null, "x", this.startText());
+        text1.setAttributeNS(null, "y", "10");
+        text1.setAttribute("dominant-baseline", "central");
+        text1.textContent = `${this.radnaPotreba.start} - ${this.radnaPotreba.end}`;
+        text1.setAttribute("textLength", `${(this.width() * 100) / 2}%`);
+        let parentElement = document.querySelector(`#ttermin${2} svg`);
+        parentElement.appendChild(rect2);
+        parentElement.appendChild(text1);
+    }
+};
+drawRect.workRect();
+
+console.log(drawRect.width() * 100);
+console.log(drawRect.startText());
+console.log(drawRect.sat());
+console.log(drawRect.x());
