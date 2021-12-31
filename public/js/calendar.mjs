@@ -1,3 +1,5 @@
+// import { mjeseci } from "./mjeseci.mjs"
+
 const d = new Date();
 let year = d.getFullYear();
 
@@ -9,6 +11,8 @@ function leapYear() {
         return 29;
     } else return 28;
 }
+
+
 
 
 const dani = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota', 'Nedjelja'];
@@ -118,31 +122,31 @@ const drawRect = {
         start: 9,
         end: 20
     },
-    totalVrijeme: function () {
+    totalVrijeme: function() {
         return this.radnoVrijeme.end - this.radnoVrijeme.start;
     },
     cliWidth: document.querySelector("#ttermin2 svg").clientWidth,
-    sat: function () {
+    sat: function() {
         return this.cliWidth / this.totalVrijeme();
     },
     radnaPotreba: {
         start: 9,
         end: 14
     },
-    totalRad: function () {
+    totalRad: function() {
         return this.radnaPotreba.end - this.radnaPotreba.start;
     },
-    x: function () {
+    x: function() {
         return (this.radnaPotreba.start - this.radnoVrijeme.start) * this.sat();
     },
-    width: function () {
+    width: function() {
         return parseFloat(this.totalRad() / this.totalVrijeme()).toFixed(2);
     },
-    startText: function () {
+    startText: function() {
         return `${this.x() + this.width() / 4 * this.cliWidth}`;
     },
     studentColor: "red",
-    workRect: function () {
+    workRect: function() {
         let rect2 = document.createElementNS('http://www.w3.org/2000/svg', "rect");
         rect2.setAttribute("x", this.x());
         rect2.setAttribute("width", `${parseInt(this.width() * 100)}%`);
@@ -160,8 +164,3 @@ const drawRect = {
     }
 };
 drawRect.workRect();
-
-console.log(drawRect.width() * 100);
-console.log(drawRect.startText());
-console.log(drawRect.sat());
-console.log(drawRect.x());
