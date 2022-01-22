@@ -1,0 +1,27 @@
+<% layout('layouts/boilerplate')%>
+
+
+
+<div class="container">
+    <div class="justify-content-center">
+        <h1>Login</h1>
+
+        <form action="/login" method="POST">
+            <div class="col-md-6">
+                <label class="form-label" for="username">Username</label>
+                <input type="text" class="form-control" id="username" name="username" required>
+                <div class="valid-feedback">
+                    Dobar
+                </div>
+            </div>
+            <div class="col-md-6">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div class="valid-feedback">
+                    Dobar
+                </div>
+            </div>
+            <button class="btn btn-success my-3">Login</button>
+        </form>
+    </div>
+</div>

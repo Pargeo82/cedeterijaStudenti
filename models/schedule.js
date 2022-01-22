@@ -1,13 +1,17 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const ScheduleSchema = new Schema({
     month: Number,
     day: Number,
+    workHour: [{
+        start: Number,
+        end: Number
+    }],
     students: [{
         type: Schema.Types.ObjectId,
         ref: 'student'
     }]
 });
 
-module.exports = mongoose.model('Schedule', ScheduleSchema);
+export default mongoose.model('Schedule', ScheduleSchema);

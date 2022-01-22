@@ -1,17 +1,16 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
+import passportLocalMongoose from 'passport-local-mongoose';
+
 
 const StudentSchema = new Schema({
-    name: String,
     email: {
         type: String,
         required: true,
         unique: true
-    },
-    workSched: [{
-        type: Schema.Types.ObjectId,
-        ref: 'schedule'
-    }]
+    }
 });
 
-module.exports = mongoose.model('Student', StudentSchema);
+StudentSchema.plugin(passportLocalMongoose);
+
+export default mongoose.model('Student', StudentSchema);

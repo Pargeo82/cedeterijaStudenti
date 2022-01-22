@@ -1,5 +1,6 @@
 // import { dani, mjesec } from "./mjeseci.js"
 
+
 const d = new Date();
 let year = d.getFullYear();
 console.log(year);
@@ -119,6 +120,8 @@ function makeSvg(param) {
     svg1.appendChild(rect1);
 };
 
+
+
 const drawRect = {
     radnoVrijeme: {
         start: 9,
@@ -132,8 +135,8 @@ const drawRect = {
         return this.cliWidth / this.totalVrijeme();
     },
     radnaPotreba: {
-        start: 9,
-        end: 14
+        start: null,
+        end: null
     },
     totalRad: function() {
         return this.radnaPotreba.end - this.radnaPotreba.start;
@@ -165,4 +168,6 @@ const drawRect = {
         parentElement.appendChild(text1);
     }
 };
+// drawRect.radnaPotreba.start = 9;
+// drawRect.radnaPotreba.end = 14;
 drawRect.workRect();
