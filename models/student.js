@@ -8,6 +8,11 @@ const StudentSchema = new Schema({
         type: String,
         required: true,
         unique: true
+    },
+    phoneNumber: {
+        type: String,
+        required: true,
+        unique: true
     }
 });
 
