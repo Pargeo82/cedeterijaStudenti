@@ -1,9 +1,8 @@
-// import { dani, mjesec } from "./mjeseci.js"
+export const d = new Date();
+import { clearTable } from "./prevNext.js";
 
-
-const d = new Date();
 let year = d.getFullYear();
-console.log(year);
+// console.log(year);
 
 function calcdan() {
     let dan = d.getDay();
@@ -17,7 +16,7 @@ function calcdan() {
 // testing another year
 // d.setFullYear(2024);
 // year = d.getFullYear();
-console.log(year);
+// console.log(year);
 
 function leapYear() {
     if ((year - 2020) % 4 === 0) {
@@ -77,11 +76,16 @@ const mjeseci = [{
 
 const dani = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota', 'Nedjelja'];
 
+
 let mjesec = mjeseci[d.getMonth()];
 
+// console.log(mjesec);
+
 // testing another month
-// d.setMonth(1);
+
 // mjesec = mjeseci[d.getMonth()]
+
+
 
 const parentTable = document.querySelector('tbody');
 const table = () => {
@@ -119,8 +123,6 @@ function makeSvg(param) {
     parentElement.appendChild(svg1);
     svg1.appendChild(rect1);
 };
-
-
 
 const drawRect = {
     radnoVrijeme: {
@@ -168,6 +170,29 @@ const drawRect = {
         parentElement.appendChild(text1);
     }
 };
+
+let prevButton = document.getElementById('prevMon');
+let nextButton = document.getElementById('nextMon');
+
+prevButton.addEventListener('click', function() {
+    d.setMonth(`${d.getMonth() - 1}`, 10);
+    mjesec = mjeseci[d.getMonth()];
+    clearTable();
+    table();
+    return d.setMonth(`${d.getMonth()}`, 10);
+});
+
+nextButton.addEventListener('click', function() {
+    d.setMonth(`${d.getMonth() + 1}`, 10);
+    console.log(d.getMonth());
+    mjesec = mjeseci[d.getMonth()];
+    clearTable();
+    table();
+    return d.setMonth(`${d.getMonth()}`, 10);
+});
+
+
+
 // drawRect.radnaPotreba.start = 9;
 // drawRect.radnaPotreba.end = 14;
-drawRect.workRect();
+// drawRect.workRect();

@@ -19,3 +19,7 @@
 #termincol {
     padding: 0.05rem 0.25rem;
 }
+
+.month {
+    color: black !important;
+}
