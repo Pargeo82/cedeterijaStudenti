@@ -12,6 +12,8 @@ import Schedule from './models/schedule.js';
 import isLoggedIn from './middleware.js';
 
 
+
+
 import userRoutes from './routes/student.js'
 
 
@@ -69,6 +71,15 @@ app.use('/', userRoutes);
 app.get('/home', (req, res) => {
     res.render('home');
 });
+
+app.get('/adminhome', isLoggedIn, async (req, res) => {
+    const students = await Student.find({});
+    res.render('adminhome', { students });
+});
+
+app.get('/termin', isLoggedIn, (req, res) => {
+    res.render('termin');
+})
 
 
 app.listen(3000, () => {

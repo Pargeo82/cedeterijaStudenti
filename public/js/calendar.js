@@ -171,27 +171,24 @@ const drawRect = {
     }
 };
 
-let prevButton = document.getElementById('prevMon');
-let nextButton = document.getElementById('nextMon');
-
-prevButton.addEventListener('click', function() {
-    d.setMonth(`${d.getMonth() - 1}`, 10);
-    mjesec = mjeseci[d.getMonth()];
-    clearTable();
-    table();
-    return d.setMonth(`${d.getMonth()}`, 10);
+document.querySelectorAll('.prevMon').forEach(item => {
+    item.addEventListener('click', function() {
+        d.setMonth(`${d.getMonth() - 1}`, 10);
+        mjesec = mjeseci[d.getMonth()];
+        clearTable();
+        table();
+        return d.setMonth(`${d.getMonth()}`, 10);
+    });
 });
-
-nextButton.addEventListener('click', function() {
-    d.setMonth(`${d.getMonth() + 1}`, 10);
-    console.log(d.getMonth());
-    mjesec = mjeseci[d.getMonth()];
-    clearTable();
-    table();
-    return d.setMonth(`${d.getMonth()}`, 10);
+document.querySelectorAll('.nextMon').forEach(item => {
+    item.addEventListener('click', function() {
+        d.setMonth(`${d.getMonth() + 1}`, 10);
+        mjesec = mjeseci[d.getMonth()];
+        clearTable();
+        table();
+        return d.setMonth(`${d.getMonth()}`, 10);
+    });
 });
-
-
 
 // drawRect.radnaPotreba.start = 9;
 // drawRect.radnaPotreba.end = 14;

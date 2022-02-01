@@ -1,0 +1,27 @@
+<% layout('layouts/boilerplate')%>
+
+<main>
+    <div class="container">
+        <div class="mb-3">
+            <a href="/termin">Postavljanje termina</a>
+        </div>
+        <h3>Popis studenata:</h3>
+        <table class="table table-info table-sm table-striped">
+            <% for (let student of students) {%>
+            <tr>
+                <td>
+                    <%= student.username%>
+                </td>
+                <td>
+                    <%= student.phoneNumber%>
+                </td>
+                <td>
+                    <%= student.email%>
+                </td>
+            </tr>
+            <% } %>
+        </table>
+
+    </div>
+
+</main>
