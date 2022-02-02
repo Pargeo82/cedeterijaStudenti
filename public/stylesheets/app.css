@@ -16,6 +16,10 @@
     width: 100px;
 }
 
+#mjesec tbody td {
+    font-weight: 600;
+}
+
 #termincol {
     padding: 0.05rem 0.25rem;
 }

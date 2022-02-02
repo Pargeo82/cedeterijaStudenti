@@ -1,10 +1,13 @@
 export const d = new Date();
+import { table } from './table.js';
 import { clearTable } from "./prevNext.js";
 
-let year = d.getFullYear();
+
+
+export let year = d.getFullYear();
 // console.log(year);
 
-function calcdan() {
+export function calcdan() {
     let dan = d.getDay();
     if (dan === 0) {
         return dani[6];
@@ -77,7 +80,7 @@ const mjeseci = [{
 const dani = ['Ponedjeljak', 'Utorak', 'Srijeda', 'Četvrtak', 'Petak', 'Subota', 'Nedjelja'];
 
 
-let mjesec = mjeseci[d.getMonth()];
+export let mjesec = mjeseci[d.getMonth()];
 
 // console.log(mjesec);
 
@@ -87,42 +90,9 @@ let mjesec = mjeseci[d.getMonth()];
 
 
 
-const parentTable = document.querySelector('tbody');
-const table = () => {
-    for (let i = 1; i <= mjesec.days; i++) {
-        d.setDate(i);
-        const trow = document.createElement('tr');
-        const tdatum = document.createElement('th');
-        const tdan = document.createElement('th');
-        const ttermin = document.createElement('td');
-        ttermin.id = `ttermin${i}`;
-        tdatum.classList.add("text-end");
-        tdan.classList.add("text-start");
-        ttermin.classList.add('termincol');
-        tdatum.innerText = `${i}. ${mjesec.name}`;
-        tdan.innerText = `${calcdan()}`;
-        parentTable.appendChild(trow);
-        trow.append(tdatum);
-        trow.append(tdan);
-        trow.append(ttermin);
-        makeSvg([i]);
-    };
-};
 table();
 
-function makeSvg(param) {
-    let svg1 = document.createElementNS('http://www.w3.org/2000/svg', "svg");
-    svg1.setAttribute("width", "100%");
-    svg1.setAttribute("height", "24px");
-    let rect1 = document.createElementNS('http://www.w3.org/2000/svg', "rect");
-    rect1.setAttribute("x", "0");
-    rect1.setAttribute("width", "100%");
-    rect1.setAttribute("height", "100%");
-    rect1.setAttribute("fill", "transparent");
-    let parentElement = document.querySelector(`#ttermin${param}`);
-    parentElement.appendChild(svg1);
-    svg1.appendChild(rect1);
-};
+
 
 const drawRect = {
     radnoVrijeme: {
@@ -132,9 +102,12 @@ const drawRect = {
     totalVrijeme: function() {
         return this.radnoVrijeme.end - this.radnoVrijeme.start;
     },
-    cliWidth: document.querySelector("#ttermin2 svg").clientWidth,
+    parentEl: "ttermin1_1_2022",
+    cliWidth: function() {
+        return document.getElementById(this.parentEl).clientWidth;
+    },
     sat: function() {
-        return this.cliWidth / this.totalVrijeme();
+        return this.cliWidth() / this.totalVrijeme();
     },
     radnaPotreba: {
         start: null,
@@ -150,9 +123,9 @@ const drawRect = {
         return parseFloat(this.totalRad() / this.totalVrijeme()).toFixed(2);
     },
     startText: function() {
-        return `${this.x() + this.width() / 4 * this.cliWidth}`;
+        return `${this.x() + this.width() / 4 * this.cliWidth()}`;
     },
-    studentColor: "red",
+    studentColor: null,
     workRect: function() {
         let rect2 = document.createElementNS('http://www.w3.org/2000/svg', "rect");
         rect2.setAttribute("x", this.x());
@@ -165,11 +138,13 @@ const drawRect = {
         text1.setAttribute("dominant-baseline", "central");
         text1.textContent = `${this.radnaPotreba.start} - ${this.radnaPotreba.end}`;
         text1.setAttribute("textLength", `${(this.width() * 100) / 2}%`);
-        let parentElement = document.querySelector(`#ttermin${2} svg`);
+        let parentElement = document.querySelector(`#${this.parentEl} svg`);
         parentElement.appendChild(rect2);
         parentElement.appendChild(text1);
     }
 };
+
+
 
 document.querySelectorAll('.prevMon').forEach(item => {
     item.addEventListener('click', function() {
@@ -180,6 +155,7 @@ document.querySelectorAll('.prevMon').forEach(item => {
         return d.setMonth(`${d.getMonth()}`, 10);
     });
 });
+
 document.querySelectorAll('.nextMon').forEach(item => {
     item.addEventListener('click', function() {
         d.setMonth(`${d.getMonth() + 1}`, 10);
@@ -190,6 +166,13 @@ document.querySelectorAll('.nextMon').forEach(item => {
     });
 });
 
-// drawRect.radnaPotreba.start = 9;
-// drawRect.radnaPotreba.end = 14;
-// drawRect.workRect();
+
+function setHours(rpstart, rpend, pardate, color) {
+    drawRect.radnaPotreba.start = rpstart;
+    drawRect.radnaPotreba.end = rpend;
+    drawRect.parentEl = pardate;
+    drawRect.studentColor = color;
+    drawRect.workRect();
+};
+
+// setHours(16, 20, "ttermin5_1_2022", "blue");
