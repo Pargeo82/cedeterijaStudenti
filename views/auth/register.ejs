@@ -2,33 +2,65 @@
 
 
 
-<div class="container">
-    <div class="justify-content-center">
-        <h1>Register</h1>
-
+<div class="container flex flex-column justify-content-center col-md-8">
+    <div>
+        <h1 class="mb-3 text-center">Registriraj se</h1>
         <form action="/register" method="POST">
-            <div class="col-md-6">
+            <div class="row mb-2">
                 <label class="form-label" for="username">Korisničko ime:</label>
                 <input type="text" class="form-control" id="username" name="username" required>
                 <div class="valid-feedback">
                     Dobar
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-5">
+                    <label class="form-label" for="colorpicker">Izaberi Boju Pozadine:</label>
+                    <input type="color" class="form-control form-control-color" id="colorpicker" name="colorpicker" required>
+                </div>
+                <div class="col-md-7 justify-content-center">
+                    <div class="row">
+                        <div class="form-check col-md-5 ms-3 mb-3">
+                            <input class="form-check-input" type="radio" name="textColor" id="blackText" value="black">
+                            <label class="form-check-label" for="blackText">
+                                Crni tekst
+                            </label>
+                        </div>
+                        <div class="form-check col-md-5 ms-3 mb-3">
+                            <input class="form-check-input" type="radio" name="textColor" id="whiteText" value="white" checked>
+                            <label class="form-check-label" for="whiteText">
+                                Bijeli tekst
+                            </label>
+                        </div>
+                        <div class="w-100"></div>
+                        <div class="col-6 justify-content-center mb-3">
+                            <div id='namerect' class="rectangle"><span id="nametext"></span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <label class="form-label" for="fullname">Ime i prezime:</label>
+                <input type="fullname" class="form-control" id="fullname" name="fullname" required>
+                <div class="valid-feedback">
+                    Dobar
+                </div>
+            </div>
+            <div class="row mb-2">
                 <label class="form-label" for="email">Email:</label>
                 <input type="email" class="form-control" id="email" name="email" required>
                 <div class="valid-feedback">
                     Dobar
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="row mb-2">
                 <label class="form-label" for="password">Šifra:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
                 <div class="valid-feedback">
                     Dobar
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="row mb-2">
                 <label class="form-label" for="phoneNumber">Broj telefona:</label>
                 <input type="text" class="form-control" id="phoneNumber" name="phoneNumber">
                 <div class="valid-feedback">
@@ -39,3 +71,5 @@
         </form>
     </div>
 </div>
+
+<script type="module" src="/js/register.js"></script>

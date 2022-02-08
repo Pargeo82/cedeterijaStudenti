@@ -27,3 +27,16 @@
 .month {
     color: black !important;
 }
+
+
+#namerect {
+    display: flex;
+    height: 1.5rem;
+    width: 12rem;
+    background-color: black;
+    padding: 6px;
+    border-radius: 5px;
+    color: white;
+    align-items: center;
+    justify-content: center;
+}
